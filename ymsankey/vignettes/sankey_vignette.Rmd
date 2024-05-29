@@ -1,0 +1,52 @@
+---
+title: "sankey_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sankey_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Introduction: This vignette explains how to use the `ymsankey` package to create Sankey plots for visualizing the contribution of various risk factors to stroke.
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Example
+
+```{r setup, include=FALSE}
+library(ymsankey)
+library(ggplot2)
+
+```
+
+# Define colors
+colors <- c("Hypertension" = "#94B992", 
+            "Diabetes" = "#CA6C56", 
+            "Smoking" = "#87AAC2", 
+            "Hypercholesterolemia" = "#CD925F", 
+            "Obesity" = "#546C91")
+
+# Load the data
+load("/Users/yakoutmezgueldi/Desktop/Jobs/Cedars Sinai Job Lab/Assignment No 2/sankey_data.RData") #Replace with the actual path to your data file
+
+# Create version 1 of the plot
+plot1 <- sankey_plot(data_melt, colors, version = 1)
+print(plot1)
+
+# Create version 2 of the plot
+plot2 <- sankey_plot(data_melt, colors, version = 2)
+print(plot2)
+
+install.packages("devtools")
+library(devtools)
+devtools::document(R/data.R)
+
+
+
